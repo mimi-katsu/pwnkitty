@@ -1,7 +1,7 @@
 import asyncio    
 import secrets
 import sys
-from bin.modules import Modules, EventModules
+from bin.modules import Modules, CommandModules, EventModules
 from util.intro import play_intro
 class MenuItem:
     def __init__(self, name, label, help_str, action):
@@ -11,16 +11,15 @@ class MenuItem:
         self.action = action
 
     def execute(self):
-            self.action(*args)
+            self.action(args)
         
 class CommandParser:
     def __init__(self, server):
         self.server = server
         self.command_map = {}
 
-        for m in server.modules.mods:
+        for m in server.commands.loaded:
             self.command_map[m.label] = m.action
-
 
     def run_command(self, command):
         arguments = command.split()
@@ -61,6 +60,7 @@ class Server:
 
         self.settings:object = Settings()
         self.modules:object = Modules(self)
+        self.commands:object = CommandModules(self)
         self.ev_mods:object = EventModules(self)
         self.command_parser:object = CommandParser(self)
 
