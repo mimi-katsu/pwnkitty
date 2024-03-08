@@ -1,4 +1,4 @@
-from util.messages import ok
+from util.messages import ok, oops
 
 class Help:
     def __init__(self, server):

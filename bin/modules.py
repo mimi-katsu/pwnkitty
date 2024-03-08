@@ -92,9 +92,7 @@ class EventModules:
     def load_mods(self, path: str) -> list:
         """load all modules from files "events" directory"""
         mods = []
-        # Get the names of all the modules in our mod folder.
         mod_files = [f for f in os.listdir(path) if f.endswith('.py')]
-        #load each pmod and add it to a list.
         for p in mod_files:
             file_path = os.path.join(path, p)
             spec = importlib.util.spec_from_file_location(p[:-3], file_path)
