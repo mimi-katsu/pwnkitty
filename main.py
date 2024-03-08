@@ -1,8 +1,8 @@
 import asyncio    
 import secrets
 import sys
-from modules import Modules, EventModules
-
+from bin.modules import Modules, EventModules
+from util.intro import play_intro
 class MenuItem:
     def __init__(self, name, label, help_str, action):
         self.name = name
@@ -144,7 +144,9 @@ class Server:
             await lsocket.serve_forever()
 
 async def main():
+    play_intro()
     server = Server()
     await server.start_listener()
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -7,7 +7,7 @@ import inspect
 class Modules:
     def __init__(self, server: object = None):
         self.server = server
-        self.mods: list[object] = self.load_mods("mods/modules")
+        self.mods: list[object] = self.load_mods("bin/mods/modules")
 
     def load_mods(self, path: str) -> list:
         """Load all the mod modules from a single directory specified in mods settings and instantiate classes found in each module."""
@@ -59,7 +59,7 @@ class EventModules:
 
     def __init__(self, server: object = None):
         self.server = server
-        self.ev_mods: list[object] = self.load_mods("mods/events")
+        self.ev_mods: list[object] = self.load_mods("bin/mods/events")
 
     def load_mods(self, path: str) -> list:
         """load all the mod modules from a single directory specified in mods settings."""
