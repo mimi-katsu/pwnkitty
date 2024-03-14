@@ -24,7 +24,7 @@ class Help:
         ok()
 
 class GoToMenu:
-    def __init__(self,pwnkitty):
+    def __init__(self, pwnkitty):
         self.pwnkitty = pwnkitty
         self.label = 'menu'
         self.help_str = 'Go back to the main menu'
@@ -48,13 +48,13 @@ class ShowSessions:
         self.is_async = False
 
     def show_sessions(self, _):
-        print(self.server.obj_list)
         print(f'\n[+] Listeners:\n')
         listen_header = "Type" + (" "*18) + "Address"
         print(f'\t{listen_header}\n\t{("=" * len(listen_header))}')
         for l in self.server.listeners:
             listener = self.server.listeners[l]
             print(f'\t{listener.type}{" " * (20 - len(listener.type))}{listener.settings.lhost or listener.settings.def_lhost}:{listener.settings.lport or listener.settings.def_lport}\n')
+        
         print(f'\n[+] Sessions (Current: {self.server.session.label or self.server.session.id})\n')
         sesh_header = "ID" + (" "*18) + "Label" +(" "* 17)+ "Host"
         print(f'\t{sesh_header}\n\t{("=" * len(sesh_header))}')

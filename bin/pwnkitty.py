@@ -4,11 +4,11 @@ from bin.commandparser import CommandParser
 
 class PwnKitty:
     def __init__(self):
-        self.name = "PwnKitty"
+        """This class provides shared access to and tracks all attributes of all module 
+        class instances spawned through operation of the software"""
         self.sessions:dict[object] = {}
         self.session:object = None
         self.session_count = 0
-        self.obj_list = []
         self.listeners = {}
         self.modules =  Modules(self)
         self.commands = CommandModules(self)

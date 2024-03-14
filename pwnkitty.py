@@ -3,10 +3,6 @@ from util.intro import play_intro
 from util.tools import async_input
 import asyncio
 
-# class Menu:
-    
-
-
 async def main():
     play_intro()
 

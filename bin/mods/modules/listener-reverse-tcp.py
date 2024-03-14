@@ -8,7 +8,6 @@ class TCPListener:
         self.id = secrets.token_hex(8)
         self.settings:object = self.Settings()
         self.pwnkitty = pwnkitty
-        self.pwnkitty.obj_list.append(self)
 
         self.__inbuffer = asyncio.Queue(maxsize=0)
         self.outbuffer = asyncio.Queue(maxsize=0)
