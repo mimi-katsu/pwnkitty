@@ -26,8 +26,7 @@ class Modules:
             for name, obj in inspect.getmembers(module, inspect.isclass):
 
                 if obj.__module__ == module.__name__:
-                    instance = obj(self.server)
-                    mods.append(instance)
+                    mods.append(obj)
         return mods    
 
 class CommandModules:

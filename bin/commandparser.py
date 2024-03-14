@@ -12,10 +12,11 @@ class CommandParser:
             args = arguments[1:]
             if comm in self.command_map.keys():
                 if self.command_map[comm].is_async:
-                    asyncio.create_task(self.command_map[comm].action((args)))
+                    obj = self.command_map[comm](self.pwnkitty)
+                    asyncio.create_task(obj.action((args)))
                 else:
                     self.command_map[comm].action((args))
-
+                    
     def update_command_map(self):
         self.command_map = {}
         for c in self.pwnkitty.commands.loaded:

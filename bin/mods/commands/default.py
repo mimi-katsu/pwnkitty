@@ -10,7 +10,7 @@ class Help:
         self.is_async = False
 
     def show_help(self, _):
-        if self.server.modules.loaded:
+        if self.server.session.type == 'menu' and self.server.modules.loaded:
             print("    Modules:\n")
      
             for m in self.server.modules.loaded:
@@ -36,6 +36,7 @@ class GoToMenu:
         self.pwnkitty.session = self.pwnkitty.menu
         self.pwnkitty.command_parser.update_command_map()
         print("Main Menu")
+        print('=' * 25)
 
 class ShowSessions:
     def __init__(self, server):
@@ -47,12 +48,19 @@ class ShowSessions:
         self.is_async = False
 
     def show_sessions(self, _):
+        print(self.server.obj_list)
+        print(f'\n[+] Listeners:\n')
+        listen_header = "Type" + (" "*18) + "Address"
+        print(f'\t{listen_header}\n\t{("=" * len(listen_header))}')
+        for l in self.server.listeners:
+            listener = self.server.listeners[l]
+            print(f'\t{listener.type}{" " * (20 - len(listener.type))}{listener.settings.lhost or listener.settings.def_lhost}:{listener.settings.lport or listener.settings.def_lport}\n')
         print(f'\n[+] Sessions (Current: {self.server.session.label or self.server.session.id})\n')
         sesh_header = "ID" + (" "*18) + "Label" +(" "* 17)+ "Host"
         print(f'\t{sesh_header}\n\t{("=" * len(sesh_header))}')
         for s in self.server.sessions.keys():
             client = self.server.sessions[s]
-            print(f'\t{client.id}{" " * (20 - len(str(client.id)))}{client.label or "None"}{" " * (20 - len(client.label or "None"))}{client.ip_addr}')
+            print(f'\t{client.id}{" " * (20 - len(str(client.id)))}{client.label or "None"}{" " * (20 - len(client.label or "None"))}{client.info.ip_addr}')
             print(f'\t{("-" * len(sesh_header))}')
         ok()
 
@@ -90,7 +98,7 @@ class Info:
         self.types = {'client'}
     
     def show_info(self, _):
-        print(f'ID: {self.server.session.id}\nIp Address: {self.server.session.ip_addr}')
+        print(f'ID: {self.server.session.id}\nIp Address: {self.server.session.info.ip_addr}')
         ok()
 
 class LabelSession:

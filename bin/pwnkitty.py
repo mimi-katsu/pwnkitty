@@ -8,6 +8,7 @@ class PwnKitty:
         self.sessions:dict[object] = {}
         self.session:object = None
         self.session_count = 0
+        self.obj_list = []
         self.listeners = {}
         self.modules =  Modules(self)
         self.commands = CommandModules(self)

@@ -1,10 +1,12 @@
 class TestMod:
+    name = 'Test Module'
+    label = 'test'
+    help_str = 'test function'
+    is_async = False
     def __init__(self, pwnkitty):
-        self.name = 'Test Module'
-        self.label = 'test'
-        self.action = self.test_func
         self.pwnkitty = pwnkitty
-        self.help_str = 'test function'
-        self.is_async = False
-    def test_func(self, args):
+
+    def test_func(args):
         print('Test func success')
+
+    action = test_func
