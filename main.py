@@ -81,7 +81,6 @@ class Server:
 
             try:
                 client.writer.write((message + '\n').encode('utf-8'))
-                # self.logs.chat_event_log.debug('sent data')
                 await client.writer.drain()
             except ConnectionResetError:
                 self.close_conn(client)

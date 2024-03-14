@@ -10,7 +10,7 @@ class Modules:
     def __init__(self, server: object = None):
         self.server = server
         self.loaded: list[object] = self.load_mods("bin/mods/modules")
-
+        print('Loading modules...')
     def load_mods(self, path: str) -> list:
         """Load all classes from all modules in the "modules" mod directory."""
         mods = []
@@ -35,7 +35,7 @@ class CommandModules:
     def __init__(self, server: object = None):
         self.server = server
         self.loaded: list[object] = self.load_mods("bin/mods/commands")
-
+        print('Loading command modules...')
     def load_mods(self, path: str) -> list:
         """Load all classes from all modules in the "commands" directory."""
         mods = []
