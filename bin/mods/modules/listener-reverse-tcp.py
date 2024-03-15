@@ -6,16 +6,19 @@ from util.tools import async_input
 class TCPListener:
     def __init__(self, pwnkitty):
         self.id = secrets.token_hex(8)
+
         self.settings:object = self.Settings()
+
         self.pwnkitty = pwnkitty
 
         self.__inbuffer = asyncio.Queue(maxsize=0)
+        
         self.outbuffer = asyncio.Queue(maxsize=0)
 
 
     name = 'TCP Reverse Shell listener'
     type = 'tcp-reverse'
-    label = 'reverse'
+    label = 'tcplisten'
     help_str = 'Create a listener to catch incoming reverse shells using TCP protocol'
     is_async = True
     def __repr__(self):
